@@ -87,4 +87,26 @@ curl -X POST "http://localhost:8080/recaudos/edit/1" -H "Content-Type: applicati
 curl -X DELETE "http://localhost:8080/recaudos/del/2" -H "Content-Type: application/json";
 ```
 
+### Movimiento:
+
+```bash
+# List all
+curl -X GET "http://localhost:8080/movimientos/list";
+
+# Get by id_client
+curl -X GET "http://localhost:8080/movimientos/getByRecaudoId/1";
+
+# Get by id_movimiento
+curl -X GET "http://localhost:8080/movimientos/getByMovimientoId/1";
+
+# Insert
+curl -X PUT "http://localhost:8080/movimientos/add" -H "Content-Type: application/json" -d '{"ingreso": "2023-01-01T00:00:00.090+00:00", "salida": "2023-01-01T01:00:00.090+00:00", "placa": "bhz-222", "id_operador": 1}';
+
+# update
+curl -X POST "http://localhost:8080/movimientos/edit/1" -H "Content-Type: application/json" -d '{"ingreso": "2023-04-01T00:00:00.090+00:00", "salida": "2023-04-01T01:00:00.090+00:00", "placa": "bhz-333", "id_operador": 2}';
+
+# delete
+curl -X DELETE "http://localhost:8080/movimientos/del/2" -H "Content-Type: application/json";
+```
+
 

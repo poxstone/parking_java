@@ -9,11 +9,11 @@ import javax.persistence.*;
 public class MovimientoModel {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id_movimiento;
-	private Timestamp  ingreso;
-	private Timestamp  salida;
-	private String placa;  // from vehiculo
-	private Integer id_operador;  // from operador
+	private Integer   id_movimiento;
+	private Timestamp ingreso;
+	private Timestamp salida;
+	private String    placa;        // from vehiculo
+	private Integer   id_operador;  // from operador
 	
 
 	public Integer getId_movimiento() {
