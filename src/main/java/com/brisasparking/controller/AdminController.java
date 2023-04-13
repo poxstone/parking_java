@@ -5,8 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,14 +20,10 @@ import com.brisasparking.model.AdminIngressModel;
 public class AdminController {
 	private static final String MOVIMIENTOS_URL = "http://localhost:8080/movimientos";
 	
-	@Autowired
-    private RestTemplate restTemplate;
-
 	@PutMapping("/registrarEntrada")
 //	public String NewIngres() {
 	public String NewIngres(@RequestBody AdminIngressModel ingress) {
-		
-		restTemplate = new RestTemplate();
+		RestTemplate restTemplate = new RestTemplate();
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		
@@ -40,9 +34,9 @@ public class AdminController {
 		personJsonObject.put("id_operador", 1);
 		
 		HttpEntity<String> request = new HttpEntity<String>(personJsonObject.toString(), headers);
+
 		String response = restTemplate.postForObject(MOVIMIENTOS_URL + "/add", request, String.class);
 
 		return response;
 	}
-
 }

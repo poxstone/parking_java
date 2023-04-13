@@ -1,7 +1,12 @@
 package com.brisasparking.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+@Entity
 public class AdminIngressModel {
+	@Id
+	private Integer id;
 	private Integer id_operador;
 	private Integer id_cliente;
 	private String placa;

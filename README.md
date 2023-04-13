@@ -110,3 +110,11 @@ curl -X DELETE "http://localhost:8080/movimientos/del/2" -H "Content-Type: appli
 ```
 
 
+### Admin:
+
+```bash
+# ingress
+curl -X PUT "http://localhost:8080/admin/registrarEntrada" -H "Content-Type: application/json" -d '{"id_operador":1, "id_cliente":1, "placa":"bhz-222"}';
+```
+
+
