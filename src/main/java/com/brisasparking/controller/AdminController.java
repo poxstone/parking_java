@@ -1,10 +1,12 @@
 package com.brisasparking.controller;
 
 import org.json.simple.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.MediaType;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,23 +22,22 @@ import com.brisasparking.model.AdminIngressModel;
 public class AdminController {
 	private static final String MOVIMIENTOS_URL = "http://localhost:8080/movimientos";
 	
-	@PutMapping("/registrarEntrada")
-//	public String NewIngres() {
-	public String NewIngres(@RequestBody AdminIngressModel ingress) {
+	private ResponseEntity<String> putHttp(String url, JSONObject jsonObject, HttpMethod method) {
 		RestTemplate restTemplate = new RestTemplate();
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
-		
-		JSONObject personJsonObject = new JSONObject();
-		personJsonObject.put("ingreso", "2023-01-01T00:00:00.090+00:00");
-		personJsonObject.put("salida", "2023-01-01T01:00:00.090+00:00");
-		personJsonObject.put("placa", "bhz-222");
-		personJsonObject.put("id_operador", 1);
-		
-		HttpEntity<String> request = new HttpEntity<String>(personJsonObject.toString(), headers);
-
-		String response = restTemplate.postForObject(MOVIMIENTOS_URL + "/add", request, String.class);
-
+		HttpEntity<String> request = new HttpEntity<String>(jsonObject.toString(), headers);
+		ResponseEntity<String> response = restTemplate.exchange(url, method, request, String.class);
+		return response;
+	}
+	
+	@PutMapping("/registrarEntrada")
+	public ResponseEntity<String> NewIngres(@RequestBody AdminIngressModel ingress) {
+		JSONObject jsonEntrada = new JSONObject();
+		jsonEntrada.put("ingreso", "2023-01-01T00:00:00.090+00:00");
+		jsonEntrada.put("placa", ingress.getPlaca());
+		jsonEntrada.put("id_operador", ingress.getId_operador());
+		ResponseEntity<String> response = putHttp(MOVIMIENTOS_URL+"/clientes/add", jsonEntrada, HttpMethod.PUT);
 		return response;
 	}
 }

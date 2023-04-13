@@ -118,3 +118,11 @@ curl -X PUT "http://localhost:8080/admin/registrarEntrada" -H "Content-Type: app
 ```
 
 
+### Populate:
+
+```bash
+# all
+curl -X GET "http://localhost:8080/populate/all";
+```
+
+

@@ -42,7 +42,7 @@ public class MovimientoController {
         return movimiento;
     }
     
-    @PostMapping("/add")
+    @PutMapping("/add")
     public MovimientoModel addMovimiento(@RequestBody MovimientoModel movimiento) {
     	MovimientoModel nuevoMovimiento = repository.save(movimiento);
         return nuevoMovimiento;
