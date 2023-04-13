@@ -42,3 +42,27 @@ curl -X DELETE "http://localhost:8080/vehiculos/del/2" -H "Content-Type: applica
 # update
 curl -X POST "http://localhost:8080/vehiculos/edit/bhz-222" -H "Content-Type: application/json" -d '{"tipo_vehiculo": "furgon", "id_cliente": 2}';
 ```
+
+### Operador:
+
+```bash
+# List all
+curl -X GET "http://localhost:8080/operadores/list";
+
+# Get by id_client
+curl -X GET "http://localhost:8080/operadores/getById/1";
+
+# Get by nombre and apellido
+curl -X GET "http://localhost:8080/operadores/getByNameLastName/sergio/cabrera";
+
+# Insert
+curl -X PUT "http://localhost:8080/operadores/add" -H "Content-Type: application/json" -d '{"nombre": "sergio", "apellido": "cabrera"}';
+
+# delete
+curl -X DELETE "http://localhost:8080/operadores/del/2" -H "Content-Type: application/json";
+
+# update
+curl -X POST "http://localhost:8080/operadores/edit/1" -H "Content-Type: application/json" -d '{"nombre": "carlos", "apellido": "puertas"}';
+```
+
+

@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 
-public interface ClienteRespository extends CrudRepository<ClienteModel, Integer> {
+public interface ClienteRepository extends CrudRepository<ClienteModel, Integer> {
     
 	public List<ClienteModel> findByApellido(String apellido);
 	

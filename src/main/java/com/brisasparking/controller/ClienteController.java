@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.brisasparking.model.ClienteRespository;
+import com.brisasparking.model.ClienteRepository;
 import com.brisasparking.model.ClienteModel;
 
 @RestController
@@ -23,7 +23,7 @@ import com.brisasparking.model.ClienteModel;
 public class ClienteController {
     
     @Autowired
-    private ClienteRespository repository;
+    private ClienteRepository repository;
    
     @GetMapping("/list")
     public List<ClienteModel> listClients() {

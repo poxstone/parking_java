@@ -3,7 +3,6 @@ package com.brisasparking.model;
 import javax.persistence.*;
 
 
-
 @Entity
 @Table(name = "operador")
 public class OperadorModel {
@@ -13,11 +12,11 @@ public class OperadorModel {
 	private String nombre;
 	private String apellido;
 	
-	public Integer getId_cliente() {
+	public Integer getId_operador() {
 		return id_operador;
 	}
-	public void setId_cliente(Integer id_cliente) {
-		this.id_operador = id_cliente;
+	public void setId_operador(Integer id_operador) {
+		this.id_operador = id_operador;
 	}
 	public String getNombre() {
 		return nombre;
