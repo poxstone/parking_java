@@ -60,20 +60,25 @@ public class PoputaleController {
 		JSONObject jsonVehiculo1= new JSONObject();
 		jsonVehiculo1.put("placa", "abc-123");
 		jsonVehiculo1.put("tipo_vehiculo", "cedan");
+		jsonVehiculo1.put("id_cliente", 1);
 		putHttp(HOST_URL+"/vehiculos/add", jsonVehiculo1, HttpMethod.PUT);
-		jsonVehiculo1.put("placa", "xzy-987");
-		jsonVehiculo1.put("tipo_vehiculo", "furgon");
+		jsonVehiculo1.replace("placa", "xzy-987");
+		jsonVehiculo1.replace("tipo_vehiculo", "furgon");
+		jsonVehiculo1.replace("id_cliente", 2);
 		putHttp(HOST_URL+"/vehiculos/add", jsonVehiculo1, HttpMethod.PUT);
-		jsonVehiculo1.put("placa", "van-000");
-		jsonVehiculo1.put("tipo_vehiculo", "van");
+		jsonVehiculo1.replace("placa", "van-000");
+		jsonVehiculo1.replace("tipo_vehiculo", "van");
+		jsonVehiculo1.replace("id_cliente", 2);
 		putHttp(HOST_URL+"/vehiculos/add", jsonVehiculo1, HttpMethod.PUT);
-		jsonVehiculo1.put("placa", "bus-999");
-		jsonVehiculo1.put("tipo_vehiculo", "bus");
+		jsonVehiculo1.replace("placa", "bus-999");
+		jsonVehiculo1.replace("tipo_vehiculo", "bus");
+		jsonVehiculo1.replace("id_cliente", 3);
 		putHttp(HOST_URL+"/vehiculos/add", jsonVehiculo1, HttpMethod.PUT);
 		
 		// movimiento
 		JSONObject jsonMovimiento1= new JSONObject();
-		jsonMovimiento1.put("ingreso", "2023-01-01T00:00:00.090+00:00");
+		jsonMovimiento1.put("ingreso", "2023-01-01T10:00:00.090+00:00");
+		jsonMovimiento1.put("salida", "2023-01-01T11:00:00.090+00:00");
 		jsonMovimiento1.put("placa", "abc-123");
 		jsonMovimiento1.put("id_operador", 1);
 		putHttp(HOST_URL+"/movimientos/add", jsonMovimiento1, HttpMethod.PUT);
