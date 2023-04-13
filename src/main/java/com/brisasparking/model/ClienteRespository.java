@@ -15,8 +15,8 @@ public interface ClienteRespository extends CrudRepository<ClienteModel, Integer
 	
 	public List<ClienteModel> findByNombre(String nombre);
 	
-    @Query(value="SELECT * FROM cliente where apellido = :apellido", nativeQuery = true)
-    public List<ClienteModel> listApellido(@Param("apellido") String apellido);
+    @Query(value="SELECT * FROM cliente WHERE nombre=:nombre AND apellido=:apellido", nativeQuery = true)
+    public List<ClienteModel> findByNombreApellido(@Param("nombre") String nombre, @Param("apellido") String apellido);
 
     @Modifying
     @Transactional

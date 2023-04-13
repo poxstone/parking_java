@@ -1,8 +1,8 @@
 package com.brisasparking.controller;
 
 
-import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,60 +26,43 @@ public class ClienteController {
     private ClienteRespository repository;
    
     @GetMapping("/list")
-    public String listClients() {
-    	
-    	// save new
-    	//repository.save(new Cliente("juanito", "alimania"));
-    	
-    	/*
-        Iterable<Cliente> iterator = repository.findAll();
-        System.out.println("All expense items: ");
-        iterator.forEach(item -> System.out.println(item));
-        
-        List<Cliente> breakfast = repository.findByApellido("ortiz");
-        System.out.println("\nHow does my breakfast cost?: ");
-        breakfast.forEach(item -> System.out.println(item));
-    	 */
-        
-        List<ClienteModel> listado = repository.listApellido("ortiz");
-        System.out.println("\nHow does my breakfast cost?: ");
+    public List<ClienteModel> listClients() {
+        List<ClienteModel> listado = (List<ClienteModel>) repository.findAll();
         listado.forEach(item -> System.out.println(item));
-
-        return "cliente";
+        return listado;
     }
     
-    @GetMapping("/getByName/{name}")
-    public List<ClienteModel> getClient(@PathVariable String name) {
-    	
-    	List<ClienteModel> cliente = repository.findByNombre(name);
+    @GetMapping("/getByNameLastName/{nombre}/{apellido}")
+    public List<ClienteModel> getClient(@PathVariable String nombre, @PathVariable String apellido) {
+    	List<ClienteModel> cliente = repository.findByNombreApellido(nombre, apellido);
     	cliente.forEach(item -> System.out.println(item));
-
+        return cliente;
+    }
+    
+    @GetMapping("/getById/{id_cliente}")
+    public Optional<ClienteModel> getClient(@PathVariable Integer id_cliente) {
+    	Optional<ClienteModel> cliente = repository.findById(id_cliente);
         return cliente;
     }
     
     @PutMapping("/add")
-    public ResponseEntity<ClienteModel> addClient(@RequestBody ClienteModel cliente) {
-    	
-    	// save new
+    public ClienteModel addClient(@RequestBody ClienteModel cliente) {
     	//Cliente nuevoCliente = repository.save(new Cliente("juanito", "alimania"));
     	ClienteModel nuevoCliente = repository.save(cliente);
-
-        return ResponseEntity.created(URI.create("/cliente/" + nuevoCliente.getId_cliente())).body(nuevoCliente);
+        return nuevoCliente;
     }
     
     @DeleteMapping("/del/{id_cliente}")
     public ResponseEntity<ClienteModel> delClient(@PathVariable Integer id_cliente) {
-    	
-    	// delete cliente
     	repository.deleteById(id_cliente);
-
         return ResponseEntity.noContent().build();
     }
     
     @PostMapping("/edit/{id_cliente}")
-    public ResponseEntity<ClienteModel> editClient(@PathVariable Integer id_cliente, @RequestBody ClienteModel cliente) {
-    	repository.updateClient(1, "aminta", "idalid");
-        return ResponseEntity.noContent().build();
+    public Optional<ClienteModel> editClient(@PathVariable Integer id_cliente, @RequestBody ClienteModel cliente) {
+    	repository.updateClient(id_cliente, cliente.getApellido(), cliente.getNombre());
+    	Optional<ClienteModel> clienteUpdate = repository.findById(id_cliente);
+        return clienteUpdate;
     }
 }
 

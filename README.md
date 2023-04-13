@@ -2,15 +2,43 @@
 
 ## curls
 
+### Clientes:
+
 ```bash
+# List all
+curl -X GET "http://localhost:8080/clientes/list";
 
-Insert
-curl -L -X PUT "http://localhost:8080/clientes/add" -H "Content-Type: application/json" -d '{"nombre": "walter", "apellido": "mojica"}';
+# Get by id_client
+curl -X GET "http://localhost:8080/clientes/getById/1";
 
-delete
-curl -L -X DELETE "http://localhost:8080/clientes/del/2" -H "Content-Type: application/json";
+# Get by nombre and apellido
+curl -X GET "http://localhost:8080/clientes/getByNameLastName/walter/mojica";
 
-update
-curl -L -X POST "http://localhost:8080/clientes/edit/1" -H "Content-Type: application/json" -d '{"nombre": "aminta", "apellido": "perez"}';
+# Insert
+curl -X PUT "http://localhost:8080/clientes/add" -H "Content-Type: application/json" -d '{"nombre": "walter", "apellido": "mojica"}';
 
+# delete
+curl -X DELETE "http://localhost:8080/clientes/del/2" -H "Content-Type: application/json";
+
+# update
+curl -X POST "http://localhost:8080/clientes/edit/1" -H "Content-Type: application/json" -d '{"nombre": "aminta", "apellido": "perez"}';
+```
+
+### Vehiculos:
+
+```bash
+# List all
+curl -X GET "http://localhost:8080/vehiculos/list";
+
+# Get by id_client
+curl -X GET "http://localhost:8080/vehiculos/getByClientId/2";
+
+# Insert
+curl -X PUT "http://localhost:8080/vehiculos/add" -H "Content-Type: application/json" -d '{"placa":"bhz-222", "tipo_vehiculo": "cedan", "id_cliente": 1}';
+
+# delete
+curl -X DELETE "http://localhost:8080/vehiculos/del/2" -H "Content-Type: application/json";
+
+# update
+curl -X POST "http://localhost:8080/vehiculos/edit/bhz-222" -H "Content-Type: application/json" -d '{"tipo_vehiculo": "furgon", "id_cliente": 2}';
 ```

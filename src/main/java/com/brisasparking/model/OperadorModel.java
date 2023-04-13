@@ -2,20 +2,22 @@ package com.brisasparking.model;
 
 import javax.persistence.*;
 
+
+
 @Entity
-@Table(name = "cliente")
-public class ClienteModel {
+@Table(name = "operador")
+public class OperadorModel {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id_cliente;
+	private Integer id_operador;
 	private String nombre;
 	private String apellido;
 	
 	public Integer getId_cliente() {
-		return id_cliente;
+		return id_operador;
 	}
 	public void setId_cliente(Integer id_cliente) {
-		this.id_cliente = id_cliente;
+		this.id_operador = id_cliente;
 	}
 	public String getNombre() {
 		return nombre;
@@ -30,11 +32,13 @@ public class ClienteModel {
 		this.apellido = apellido;
 	}
 	
-	protected ClienteModel() {
+	protected OperadorModel() {
     }
 	
-	public ClienteModel(String nombre, String apellido) {
+	public OperadorModel(String nombre, String apellido) {
         this.nombre = nombre;
         this.apellido = apellido;
     }
+
+
 }
