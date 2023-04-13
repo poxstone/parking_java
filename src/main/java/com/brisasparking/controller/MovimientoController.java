@@ -53,12 +53,12 @@ public class MovimientoController {
     	repository.deleteById(id_movimiento);
         return ResponseEntity.noContent().build();
     }
-    /*
+    
     @PostMapping("/edit/{id_movimiento}")
     public List<MovimientoModel> editMovimiento(@PathVariable Integer id_movimiento, @RequestBody MovimientoModel movimiento) {
     	repository.updateMovimiento(id_movimiento, movimiento.getIngreso(), movimiento.getSalida(), movimiento.getPlaca(), movimiento.getId_operador());
     	List<MovimientoModel> movimientoUpdate = repository.findByIdMovimiento(id_movimiento);
         return movimientoUpdate;
-    }*/
+    }
 }
 
