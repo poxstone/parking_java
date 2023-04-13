@@ -49,13 +49,13 @@ public class VehiculoController {
     }
     
     @DeleteMapping("/del/{placa}")
-    public ResponseEntity<VehiculoModel> delClient(@PathVariable String placa) {
+    public ResponseEntity<VehiculoModel> delVehiculo(@PathVariable String placa) {
     	repository.deleteByPlaca(placa);
         return ResponseEntity.noContent().build();
     }
     
     @PostMapping("/edit/{placa}")
-    public List<VehiculoModel> editClient(@PathVariable String placa, @RequestBody VehiculoModel vehiculo) {
+    public List<VehiculoModel> editVehiculo(@PathVariable String placa, @RequestBody VehiculoModel vehiculo) {
     	repository.updateVehiculo(placa, vehiculo.getTipo_vehiculo(), vehiculo.getId_cliente());
     	List<VehiculoModel> vehiculoUpdate = repository.findByPlaca(placa);
         return vehiculoUpdate;
