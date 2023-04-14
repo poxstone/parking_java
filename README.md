@@ -1,6 +1,14 @@
-# application
+# Application
 
-## curls
+- Spring Tool Suit 4.18.0
+- Java 1.8
+- SpringBoot 2.7 
+- Maven 3.8.7
+  - maven clean
+  - maven install
+- Mysql 5.7 > 8
+
+## Curls
 
 ### Clientes:
 
@@ -31,7 +39,7 @@ curl -X DELETE "http://localhost:8080/clientes/del/2" -H "Content-Type: applicat
 curl -X GET "http://localhost:8080/vehiculos/list";
 
 # Get by id_client
-curl -X GET "http://localhost:8080/vehiculos/getByClientId/2";
+curl -X GET "http://localhost:8080/vehiculos/getByPlaca/2";
 
 # Insert
 curl -X PUT "http://localhost:8080/vehiculos/add" -H "Content-Type: application/json" -d '{"placa":"bhz-222", "tipo_vehiculo": "cedan", "id_cliente": 1}';
