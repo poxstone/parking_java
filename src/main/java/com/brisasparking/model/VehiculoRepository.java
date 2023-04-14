@@ -24,7 +24,7 @@ public interface VehiculoRepository extends CrudRepository<VehiculoModel, Intege
     
     @Modifying
     @Transactional
-    @Query(value="DELETE vehiculo WHERE placa=:placa", nativeQuery = true)
+    @Query(value="DELETE FROM vehiculo WHERE placa=:placa", nativeQuery = true)
     public void deleteByPlaca(@Param("placa") String placa);
   
 }

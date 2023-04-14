@@ -76,7 +76,8 @@ public class AdminController {
 		}
 
 		// create movimiento
-		responseMovimiento = putHttp(MOVIMIENTOS_URL+"/add/", jsonEntrada, HttpMethod.PUT);
+		putHttp(MOVIMIENTOS_URL+"/add/", jsonEntrada, HttpMethod.PUT);
+		responseMovimiento = getHttp(MOVIMIENTOS_URL+"/getByPlacaNotSalida/"+ingress.getPlaca());
 		
 		return responseMovimiento;
 	}
@@ -89,12 +90,15 @@ public class AdminController {
 		
 		// validate if exists
 		HashMap<String, Object> movimientoMap = StringToMap(responseMovimiento.getBody().toString());
-		if (!movimientoMap.get("salida").toString().isEmpty()) {
-			// get recaudo by id
-			responseRecaudo = getHttp(RECAUDOS_URL+"/getByMovimientoId/"+ingress.getId_movimiento());
-			
-			if (!responseRecaudo.getBody().toString().equals("[]")) {
-				return responseRecaudo;
+		if (movimientoMap.get("salida") != null) {
+			if ( !movimientoMap.get("salida").toString().isEmpty()) {
+				// get recaudo by id
+				responseRecaudo = getHttp(RECAUDOS_URL+"/getByMovimientoId/"+ingress.getId_movimiento());
+				
+				if (!responseRecaudo.getBody().toString().equals("[]")) {
+					return responseRecaudo;
+				}
+				
 			}
 		}
 
