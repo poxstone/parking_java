@@ -17,6 +17,9 @@ public interface MovimientoRepository extends CrudRepository<MovimientoModel, In
 	
 	@Query(value="SELECT * FROM movimiento WHERE id_operador=:id_operador", nativeQuery = true)
     public List<MovimientoModel> findByIdOperador(@Param("id_operador") Integer id_operador);
+	
+	@Query(value="SELECT * FROM movimiento WHERE placa=:placa AND salida is NULL", nativeQuery = true)
+    public List<MovimientoModel> findByPlacaSalida(@Param("placa") String placa);
 
     @Modifying
     @Transactional

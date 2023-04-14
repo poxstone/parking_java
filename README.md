@@ -115,6 +115,8 @@ curl -X DELETE "http://localhost:8080/movimientos/del/2" -H "Content-Type: appli
 ```bash
 # ingress
 curl -X PUT "http://localhost:8080/admin/registrarEntrada" -H "Content-Type: application/json" -d '{"id_operador":1, "id_cliente":1, "placa":"bhz-222"}';
+
+curl -X POST "http://localhost:8080/admin/registrarSalida" -H "Content-Type: application/json" -d '{"id_movimiento":2}';
 ```
 
 

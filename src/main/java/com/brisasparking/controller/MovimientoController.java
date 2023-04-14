@@ -31,14 +31,20 @@ public class MovimientoController {
     }
     
     @GetMapping("/getByIdMovimiento/{id_movimiento}")
-    public List<MovimientoModel> getMovimiento(@PathVariable Integer id_movimiento) {
+    public MovimientoModel getMovimiento(@PathVariable Integer id_movimiento) {
     	List<MovimientoModel> movimiento = repository.findByIdMovimiento(id_movimiento);
-        return movimiento;
+        return movimiento.get(0);
     }
     
     @GetMapping("/getByIdOperador/{id_operador}")
     public List<MovimientoModel> findByIdOperador(@PathVariable Integer id_operador) {
     	List<MovimientoModel> movimiento = repository.findByIdOperador(id_operador);
+        return movimiento;
+    }
+    
+    @GetMapping("/getByPlacaNotSalida/{placa}")
+    public List<MovimientoModel> findByPlacaSalida(@PathVariable String placa) {
+    	List<MovimientoModel> movimiento = repository.findByPlacaSalida(placa);
         return movimiento;
     }
     
