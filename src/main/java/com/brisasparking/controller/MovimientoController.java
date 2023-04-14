@@ -50,6 +50,12 @@ public class MovimientoController {
     
     @PutMapping("/add")
     public MovimientoModel addMovimiento(@RequestBody MovimientoModel movimiento) {
+    	// validate movimiento
+    	List<MovimientoModel> existMovimiento = repository.findByPlacaEntrada(movimiento.getPlaca(), movimiento.getIngreso());
+    	if (!existMovimiento.isEmpty()) {
+    		return existMovimiento.get(0);
+    	}
+    	// create movimiento
     	MovimientoModel nuevoMovimiento = repository.save(movimiento);
         return nuevoMovimiento;
     }

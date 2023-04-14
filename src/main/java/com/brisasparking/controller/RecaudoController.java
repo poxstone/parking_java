@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.brisasparking.model.RecaudoRepository;
+import com.brisasparking.model.ClienteModel;
 import com.brisasparking.model.RecaudoModel;
 
 
@@ -43,6 +44,13 @@ public class RecaudoController {
     
     @PutMapping("/add")
     public RecaudoModel addRecaudo(@RequestBody RecaudoModel recaudo) {
+    	
+    	// validate if exists
+    	List<RecaudoModel> existRecaudo = repository.findByIdMovimiento(Integer.parseInt(recaudo.getId_movimiento().toString()));
+    	if (!existRecaudo.isEmpty()) {
+    		return existRecaudo.get(0);
+    	}
+    	// insert new
     	RecaudoModel nuevoRecaudo = repository.save(recaudo);
         return nuevoRecaudo;
     }

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.brisasparking.model.OperadorRepository;
+import com.brisasparking.model.ClienteModel;
 import com.brisasparking.model.OperadorModel;
 
 @RestController
@@ -45,8 +46,14 @@ public class OperadorController {
     }
     
     @PutMapping("/add")
-    public OperadorModel addOperador(@RequestBody OperadorModel Operador) {
-    	OperadorModel nuevoOperador = repository.save(Operador);
+    public OperadorModel addOperador(@RequestBody OperadorModel operador) {
+    	// validate if exists
+    	List<OperadorModel> existOperador = repository.findByNombreApellido(operador.getNombre().toString(), operador.getApellido().toString());
+    	if (!existOperador.isEmpty()) {
+    		return existOperador.get(0);
+    	}
+    	// create operador
+    	OperadorModel nuevoOperador = repository.save(operador);
         return nuevoOperador;
     }
     

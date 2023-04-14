@@ -47,12 +47,22 @@ public class ClienteController {
     
     @PutMapping("/add")
     public ClienteModel addClient(@RequestBody ClienteModel cliente) {
+    	// validate if exists
+    	List<ClienteModel> existCliente = repository.findByNombreApellido(cliente.getNombre().toString(), cliente.getApellido().toString());
+    	if (!existCliente.isEmpty()) {
+    		return existCliente.get(0);
+    	}
     	//Cliente nuevoCliente = repository.save(new Cliente("juanito", "alimania"));
     	ClienteModel nuevoCliente = repository.save(cliente);
         return nuevoCliente;
     }
     
-    @DeleteMapping("/del/{id_cliente}")
+    private void findByNombreApellido(String string, String string2) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@DeleteMapping("/del/{id_cliente}")
     public ResponseEntity<ClienteModel> delClient(@PathVariable Integer id_cliente) {
     	repository.deleteById(id_cliente);
         return ResponseEntity.noContent().build();
