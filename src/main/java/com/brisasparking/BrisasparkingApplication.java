@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class BrisasparkingApplication {
 
 	public static void main(String[] args) {
+		System.getProperties().put("server.port", 8080);
 		SpringApplication.run(BrisasparkingApplication.class, args);
 	}
 
