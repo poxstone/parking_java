@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.brisasparking.model.RecaudoRepository;
-import com.brisasparking.model.ClienteModel;
 import com.brisasparking.model.RecaudoModel;
 
 
